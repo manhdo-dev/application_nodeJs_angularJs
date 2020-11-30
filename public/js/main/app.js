@@ -24,6 +24,9 @@ app.controller("todoController", ['$scope', 'svTodos', function($scope, svTodos)
             $scope.todos = response.data;
             $scope.formData.text = "";
             $scope.loading = false;
+            location.reload();
+        }, function(err) {
+            console.log(err);
         })
     };
 
@@ -49,5 +52,17 @@ app.controller("todoController", ['$scope', 'svTodos', function($scope, svTodos)
         }, function(err) {
             console.log(err);
         })
-    }
+    };
+
+    // $scope.getDetail = function(todo) {
+    //     console.log("Details", todo);
+    //     $scope.loading = true;
+    //     svTodos.getOne(todo._id).then(function(response) {
+    //         $scope.todos = response.data;
+    //         $scope.loading = false;
+    //         location.reload();
+    //     }, function(err) {
+    //         console.log(err);
+    //     })
+    // }
 }]);

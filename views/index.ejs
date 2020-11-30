@@ -24,27 +24,29 @@
         <div class="jumbotron text-center">
             <h1>{{ appName }} <span class="btn btn-info">{{ todos.length }}</span></h1>
         </div>
+        <div id="todo-form" class="row">
+            <div class="col-sm-12 text-center">
+                <form class="form-inline">
+                    <div class="form-group mb-2 float-left">
+                        <input type="text" ng-model="formData.text" class="form-control input-lg text-center" placeholder="What do you want to do ?">
+                    </div>
+                    &nbsp;
+                    <button type="submit" class="btn btn-primary mb-2" ng-disabled="!formData.text" ng-click="createTodo()">Add</button>
+                </form>
+            </div>
+        </div>
         <div id="todo-list" class="row">
             <div class="col-sm-12">
                 <div class="checkbox" ng-repeat="todo in todos">
                     <input type="checkbox" ng-model="todo.isDone" ng-change="updateTodo(todo)">&nbsp;
                     <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a href="" ng-click="deleteTodo(todo)"><i class="fa fa-trash"></i></a>
+                    <!-- <a href="" ng-click="getDetail(todo)"><i class="fa fa-eye" aria-hidden="true"></i></a> -->
                     <span ng-class="{strike : todo.isDone}" editable-text="todo.text" e-form="textBtnForm" onaftersave="updateTodo(todo)">{{ todo.text }}</span>
                 </div>
                 <p class="text-center" ng-show="loading">
                     <span class="fa fa-spinner fa-spin fa-3x"></span>
                 </p>
-            </div>
-        </div>
-        <div id="todo-form" class="row">
-            <div class="col-sm-12 text-center">
-                <form>
-                    <div class="form-group text-center">
-                        <input type="text" ng-model="formData.text" class="form-control input-lg text-center" placeholder="What do you want to do ?">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-lg" ng-disabled="!formData.text" ng-click="createTodo()">Add</button>
-                </form>
             </div>
         </div>
     </div>
